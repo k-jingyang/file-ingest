@@ -1,13 +1,15 @@
 package com.kpdoggie.ingest.fileingest
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
+import java.time.LocalDate
 
-@SpringBootTest
-class FileingestApplicationTests {
+class FileIngestApplicationTests {
 
-	@Test
-	fun contextLoads() {
-	}
+    @Test
+    fun testGetPersonAge() {
+        val mockPerson = Person(dateOfBirth = LocalDate.of(2000, 1, 20))
+        assertEquals(mockPerson.age, 20)
+    }
 
 }
