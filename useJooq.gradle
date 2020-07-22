@@ -16,6 +16,7 @@ jooq {
             }
             target {
                 packageName = 'com.kpdoggie.ingest.fileingest.schema'
+                directory = 'src/main/kotlin/'
             }
         }
     }
