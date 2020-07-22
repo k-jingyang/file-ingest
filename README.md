@@ -21,7 +21,7 @@ This project is to experiment with
     
     1. Run the contents of the [schema.sql](src/main/resources/schema.sql) file to populate the database
 
-1. Run the gradle task `generateH2JooqSchemaSource`, to generate the class files
+1. Run the gradle task `generateH2JooqSchemaSource`, to generate the class files. They will be generated in `build/generated-src`
 1. Run the gradle task `bootRun` to run the Spring Batch application 
 
 > Note: We have to start up a h2 instance in Step 1 to generate the class files because the embedded H2 in Spring is only started when you run the application (jOOQ needs the files before that)  
