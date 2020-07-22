@@ -7,18 +7,13 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.item.ItemProcessor
-import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider
-import org.springframework.batch.item.database.JdbcBatchItemWriter
-import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder
 import org.springframework.batch.item.file.FlatFileItemReader
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder
-import org.springframework.batch.item.file.transform.FieldSet
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import java.time.LocalDate
-import javax.sql.DataSource
 
 
 @Configuration
@@ -31,18 +26,17 @@ class BatchConfiguration(@Autowired private val jobBuilderFactory: JobBuilderFac
                 .resource(ClassPathResource("input.csv"))
                 .delimited().delimiter(",")
                 .names("name", "dateOfBirth", "gender")
-                .fieldSetMapper { fieldSetMapper(it) }
+                .fieldSetMapper {
+                    val name = it.readString("name")
+                    val dob = it.readString("dateOfBirth")
+                    val gender = it.readChar("gender")
+                    Person(name, LocalDate.parse(dob), gender)
+                }
                 .linesToSkip(1)
                 .build()
     }
 
-    fun fieldSetMapper(input: FieldSet): Person {
-        val name = input.readString("name")
-        val dob = input.readString("dateOfBirth")
-        val gender = input.readChar("gender")
-        return Person(name, LocalDate.parse(dob), gender)
-    }
-
+    /*
     @Bean
     fun writer(dataSource: DataSource): JdbcBatchItemWriter<Person>? {
         return JdbcBatchItemWriterBuilder<Person>()
@@ -50,7 +44,7 @@ class BatchConfiguration(@Autowired private val jobBuilderFactory: JobBuilderFac
                         BeanPropertyItemSqlParameterSourceProvider())
                 .sql("INSERT INTO PEOPLE (NAME, GENDER, DOB, AGE) VALUES (:name, :gender, :dateOfBirth, :age)")
                 .dataSource(dataSource).build()
-    }
+    }*/
 
     @Bean
     fun processor(): ItemProcessor<Person, Person> {
@@ -67,7 +61,7 @@ class BatchConfiguration(@Autowired private val jobBuilderFactory: JobBuilderFac
     }
 
     @Bean
-    fun step1(writer: JdbcBatchItemWriter<Person>): Step {
+    fun step1(writer: DBItemWriter): Step {
         return stepBuilderFactory.get(
                 "step1").chunk<Person, Person>(10).reader(reader())
                 .processor(processor()).writer(writer).build()

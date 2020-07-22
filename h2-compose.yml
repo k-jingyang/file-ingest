@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  h2:
+    image: oscarfonts/h2:1.4.199
+    ports:
+      - "1521:1521"
+      - "81:81"
+    environment: 
+      - H2_OPTIONS=-ifNotExists

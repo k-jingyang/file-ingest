@@ -1,0 +1,22 @@
+jooq {
+    h2(sourceSets.main) {
+        jdbc {
+            driver = 'org.h2.Driver'
+            url = 'jdbc:h2:tcp://localhost:1521/test'
+            user = 'sa'
+            password = ''
+        }
+        generator {
+            name = 'org.jooq.codegen.DefaultGenerator'
+            database {
+                name = 'org.jooq.meta.h2.H2Database'
+                includes = '.*'
+                excludes = ''
+                inputSchema = 'PUBLIC'
+            }
+            target {
+                packageName = 'com.kpdoggie.ingest.fileingest.schema'
+            }
+        }
+    }
+}

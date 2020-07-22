@@ -16,6 +16,7 @@ import java.time.LocalDate
 class JobCompletionNotificationListener(@Autowired private val jdbcTemplate: JdbcTemplate) : JobExecutionListenerSupport() {
 
     override fun afterJob(jobExecution: JobExecution) {
+
         if (jobExecution.getStatus() === BatchStatus.COMPLETED) {
             log.info(
                     "Job completed. Verify the results.")
