@@ -20,7 +20,7 @@ class DBItemWriter(@Autowired private val dslContext: DSLContext) : ItemWriter<P
                     .values(it.name,
                             it.gender.toString(),
                             it.dateOfBirth,
-                            it.getAge()).execute()
+                            it.age).execute()
         }
     }
 
