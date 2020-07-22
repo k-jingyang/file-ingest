@@ -12,7 +12,7 @@ before_script:
 
 build:
   stage: build
-  script: gradle --build-cache assemble
+  script: gradle --build-cache assemble -x generateH2JooqSchemaSource
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -22,7 +22,7 @@ build:
 
 test:
   stage: test
-  script: gradle check
+  script: gradle check -x generateH2JooqSchemaSource
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
