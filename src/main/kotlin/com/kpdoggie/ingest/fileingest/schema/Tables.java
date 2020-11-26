@@ -4,7 +4,9 @@
 package com.kpdoggie.ingest.fileingest.schema;
 
 
-import com.kpdoggie.ingest.fileingest.schema.tables.People;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedMapping;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedS;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedSs;
 
 
 /**
@@ -14,7 +16,17 @@ import com.kpdoggie.ingest.fileingest.schema.tables.People;
 public class Tables {
 
     /**
-     * The table <code>PUBLIC.PEOPLE</code>.
+     * The table <code>PUBLIC.CACHED_MAPPING</code>.
      */
-    public static final People PEOPLE = People.PEOPLE;
+    public static final CachedMapping CACHED_MAPPING = CachedMapping.CACHED_MAPPING;
+
+    /**
+     * The table <code>PUBLIC.CACHED_S</code>.
+     */
+    public static final CachedS CACHED_S = CachedS.CACHED_S;
+
+    /**
+     * The table <code>PUBLIC.CACHED_SS</code>.
+     */
+    public static final CachedSs CACHED_SS = CachedSs.CACHED_SS;
 }

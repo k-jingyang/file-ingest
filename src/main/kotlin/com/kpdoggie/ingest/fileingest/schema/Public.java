@@ -4,7 +4,9 @@
 package com.kpdoggie.ingest.fileingest.schema;
 
 
-import com.kpdoggie.ingest.fileingest.schema.tables.People;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedMapping;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedS;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedSs;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +22,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = -1699639494;
+    private static final long serialVersionUID = -1662198984;
 
     /**
      * The reference instance of <code>PUBLIC</code>
@@ -28,9 +30,19 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
-     * The table <code>PUBLIC.PEOPLE</code>.
+     * The table <code>PUBLIC.CACHED_MAPPING</code>.
      */
-    public final People PEOPLE = People.PEOPLE;
+    public final CachedMapping CACHED_MAPPING = CachedMapping.CACHED_MAPPING;
+
+    /**
+     * The table <code>PUBLIC.CACHED_S</code>.
+     */
+    public final CachedS CACHED_S = CachedS.CACHED_S;
+
+    /**
+     * The table <code>PUBLIC.CACHED_SS</code>.
+     */
+    public final CachedSs CACHED_SS = CachedSs.CACHED_SS;
 
     /**
      * No further instances allowed
@@ -48,6 +60,8 @@ public class Public extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.<Table<?>>asList(
-            People.PEOPLE);
+            CachedMapping.CACHED_MAPPING,
+            CachedS.CACHED_S,
+            CachedSs.CACHED_SS);
     }
 }

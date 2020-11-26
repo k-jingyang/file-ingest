@@ -1,6 +1,5 @@
 package com.kpdoggie.ingest.fileingest
 
-import com.kpdoggie.ingest.fileingest.schema.Tables.PEOPLE
 import org.jooq.DSLContext
 import org.springframework.batch.item.ItemWriter
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,7 +10,7 @@ class DBItemWriter(@Autowired private val dslContext: DSLContext) : ItemWriter<P
 
     override fun write(items: MutableList<out Person>) {
         items.forEach {
-            dslContext
+    /*        dslContext
                     .insertInto(PEOPLE)
                     .columns(PEOPLE.NAME,
                             PEOPLE.GENDER,
@@ -20,7 +19,7 @@ class DBItemWriter(@Autowired private val dslContext: DSLContext) : ItemWriter<P
                     .values(it.name,
                             it.gender.toString(),
                             it.dateOfBirth,
-                            it.age).execute()
+                            it.age).execute()*/
         }
     }
 

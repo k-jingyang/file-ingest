@@ -1,7 +1,6 @@
 package com.kpdoggie.ingest.fileingest
 
 import com.kpdoggie.ingest.fileingest.schema.Tables
-import com.kpdoggie.ingest.fileingest.schema.Tables.PEOPLE
 import org.jooq.DSLContext
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -21,7 +20,7 @@ class JobCompletionNotificationListener() : JobExecutionListenerSupport() {
     private lateinit var dslContext: DSLContext
 
     override fun afterJob(jobExecution: JobExecution) {
-
+/*
         if (jobExecution.getStatus() === BatchStatus.COMPLETED) {
             val result = dslContext.select(Tables.PEOPLE.NAME).from(
                     Tables.PEOPLE)
@@ -40,7 +39,7 @@ class JobCompletionNotificationListener() : JobExecutionListenerSupport() {
                 
                 log.info("{} Age: {}", fetched, it.get(3) as Int)
             }
-        }
+        }*/
     }
 
     companion object {

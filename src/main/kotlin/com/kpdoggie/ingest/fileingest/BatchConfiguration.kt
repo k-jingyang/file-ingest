@@ -21,7 +21,7 @@ import java.time.LocalDate
 class BatchConfiguration(@Autowired private val jobBuilderFactory: JobBuilderFactory, @Autowired private val stepBuilderFactory: StepBuilderFactory) {
     @Bean
     fun reader(): FlatFileItemReader<Person> {
-        // Should read file based on location stated in properties (application.yml)
+        // Read from Directus here
         return (FlatFileItemReaderBuilder<Person>()).name("personItemReader")
                 .resource(ClassPathResource("input.csv"))
                 .delimited().delimiter(",")
@@ -35,16 +35,6 @@ class BatchConfiguration(@Autowired private val jobBuilderFactory: JobBuilderFac
                 .linesToSkip(1)
                 .build()
     }
-
-    /*
-    @Bean
-    fun writer(dataSource: DataSource): JdbcBatchItemWriter<Person>? {
-        return JdbcBatchItemWriterBuilder<Person>()
-                .itemSqlParameterSourceProvider(
-                        BeanPropertyItemSqlParameterSourceProvider())
-                .sql("INSERT INTO PEOPLE (NAME, GENDER, DOB, AGE) VALUES (:name, :gender, :dateOfBirth, :age)")
-                .dataSource(dataSource).build()
-    }*/
 
     @Bean
     fun processor(): ItemProcessor<Person, Person> {

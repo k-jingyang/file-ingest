@@ -4,8 +4,10 @@
 package com.kpdoggie.ingest.fileingest.schema;
 
 
-import com.kpdoggie.ingest.fileingest.schema.tables.People;
-import com.kpdoggie.ingest.fileingest.schema.tables.records.PeopleRecord;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedS;
+import com.kpdoggie.ingest.fileingest.schema.tables.CachedSs;
+import com.kpdoggie.ingest.fileingest.schema.tables.records.CachedSRecord;
+import com.kpdoggie.ingest.fileingest.schema.tables.records.CachedSsRecord;
 
 import org.jooq.Identity;
 import org.jooq.TableField;
@@ -24,13 +26,15 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
-    public static final Identity<PeopleRecord, Integer> IDENTITY_PEOPLE = Identities0.IDENTITY_PEOPLE;
+    public static final Identity<CachedSRecord, Integer> IDENTITY_CACHED_S = Identities0.IDENTITY_CACHED_S;
+    public static final Identity<CachedSsRecord, Integer> IDENTITY_CACHED_SS = Identities0.IDENTITY_CACHED_SS;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<PeopleRecord> CONSTRAINT_8 = UniqueKeys0.CONSTRAINT_8;
+    public static final UniqueKey<CachedSRecord> CONSTRAINT_1 = UniqueKeys0.CONSTRAINT_1;
+    public static final UniqueKey<CachedSsRecord> CONSTRAINT_8 = UniqueKeys0.CONSTRAINT_8;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -42,10 +46,12 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 {
-        public static Identity<PeopleRecord, Integer> IDENTITY_PEOPLE = Internal.createIdentity(People.PEOPLE, People.PEOPLE.PERSON_ID);
+        public static Identity<CachedSRecord, Integer> IDENTITY_CACHED_S = Internal.createIdentity(CachedS.CACHED_S, CachedS.CACHED_S.S_ID);
+        public static Identity<CachedSsRecord, Integer> IDENTITY_CACHED_SS = Internal.createIdentity(CachedSs.CACHED_SS, CachedSs.CACHED_SS.SS_ID);
     }
 
     private static class UniqueKeys0 {
-        public static final UniqueKey<PeopleRecord> CONSTRAINT_8 = Internal.createUniqueKey(People.PEOPLE, "CONSTRAINT_8", new TableField[] { People.PEOPLE.PERSON_ID }, true);
+        public static final UniqueKey<CachedSRecord> CONSTRAINT_1 = Internal.createUniqueKey(CachedS.CACHED_S, "CONSTRAINT_1", new TableField[] { CachedS.CACHED_S.S_ID }, true);
+        public static final UniqueKey<CachedSsRecord> CONSTRAINT_8 = Internal.createUniqueKey(CachedSs.CACHED_SS, "CONSTRAINT_8", new TableField[] { CachedSs.CACHED_SS.SS_ID }, true);
     }
 }
